@@ -48,7 +48,7 @@
             <client name="rp" secret="secret"
                 displayname="rp"
 				introspectTokens="true"
-                redirect="https://localhost:9443/oidcclient/redirect/RP"
+                redirect="https://www.example.com:9443/oidcclient/redirect/RP"
                 scope="openid profile scope1 email phone address"
 				preAuthorizedScope="openid profile"
                 enabled="true"/>
