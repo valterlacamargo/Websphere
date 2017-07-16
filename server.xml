@@ -26,9 +26,9 @@
        </group>
 	</basicRegistry>
 	
-    <keyStore id="defaultKeyStore" password="changeit" />
- 
-    <httpEndpoint host="localhost" httpPort="9081" httpsPort="9444" id="defaultHttpEndpoint"/>
+    <keyStore id="defaultKeyStore" password="{aes}AOwFo8y10i/fQOoQc43XLb5feqKZCU1Y3pynCPkP88Hq" />
+		
+    <httpEndpoint host="*" httpPort="9081" httpsPort="9444" id="defaultHttpEndpoint"/>
  
     <oauth-roles>
         <authenticated>
