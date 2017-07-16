@@ -36,7 +36,11 @@
         </authenticated>
     </oauth-roles>
  
-    <openidConnectProvider id="OP" oauthProviderRef="Oauth" >
+	<openidConnectProvider 
+		id="OP" 
+		oauthProviderRef="Oauth" 
+		signatureAlgorithm="RS256" 
+		jwkEnabled="true" >
     </openidConnectProvider>
  
     <oauthProvider id="Oauth"  >
