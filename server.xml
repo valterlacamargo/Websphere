@@ -1,0 +1,39 @@
+<server>
+    <featureManager>       
+        <feature>openidConnectServer-1.0</feature>
+        <feature>ssl-1.0</feature>
+        <feature>appSecurity-2.0</feature>
+        <feature>servlet-3.0</feature>
+    </featureManager>   
+ 
+    <basicRegistry id="basic" realm="OpBasicRealm">
+        <user name="testuser" password="testuserpwd" />
+        <user name="user1" password="security" />
+        <user name="user2" password="security" />
+    </basicRegistry> 
+ 
+    <keyStore id="defaultKeyStore" password="changeit" />
+ 
+    <httpEndpoint host="localhost" httpPort="9081" httpsPort="9444" id="defaultHttpEndpoint"/>
+ 
+    <oauth-roles>
+        <authenticated>
+            <special-subject type="ALL_AUTHENTICATED_USERS" />  
+        </authenticated>
+    </oauth-roles>
+ 
+    <openidConnectProvider id="OP" oauthProviderRef="Oauth" >
+    </openidConnectProvider>
+ 
+    <oauthProvider id="Oauth"  >
+        <localStore>   
+            <client name="rp" secret="secret"
+                displayname="rp"
+				introspectTokens="true"
+                redirect="https://localhost:9443/oidcclient/redirect/RP"
+                scope="openid profile scope1 email phone address"
+				preAuthorizedScope="openid profile"
+                enabled="true"/>
+        </localStore>
+    </oauthProvider> 
+</server>
