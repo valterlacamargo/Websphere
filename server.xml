@@ -3,7 +3,7 @@
         <feature>openidConnectServer-1.0</feature>
         <feature>ssl-1.0</feature>
         <feature>appSecurity-2.0</feature>
-        <feature>servlet-3.0</feature>
+        <feature>servlet-3.1</feature>
     </featureManager>   
  
 	<basicRegistry id="basic" realm="OpBasicRealm">
@@ -30,22 +30,22 @@
 		
     <httpEndpoint host="*" httpPort="9081" httpsPort="9444" id="defaultHttpEndpoint"/>
  
-    <oauth-roles>
-        <authenticated>
-            <special-subject type="ALL_AUTHENTICATED_USERS" />  
-        </authenticated>
-    </oauth-roles>
- 
+     
 	<openidConnectProvider 
 		id="OP" 
 		oauthProviderRef="Oauth" 
 		signatureAlgorithm="RS256" 
 		jwkEnabled="true" >
     </openidConnectProvider>
- 
-    <oauthProvider id="Oauth"  >
+ <!--
+ jwtAccessToken="true" allows the OP to issue access tokens that are also JWTs (that will be signed using the same configuration as configured for the OpenID Connect Provider). 
+ This allows the RPs to introspect information in the access token without needing to go back to the OP to discover allowed scopes etc.
+ -->
+    <oauthProvider id="Oauth" jwtAccessToken="true" >
         <localStore>   
-            <client name="rp" secret="secret"
+            <client 
+				name="rp" 
+				secret="secret"
                 displayname="rp"
 				introspectTokens="true"
                 redirect="https://www.example.com:9443/oidcclient/redirect/RP"
@@ -54,4 +54,11 @@
                 enabled="true"/>
         </localStore>
     </oauthProvider> 
+	
+	<oauth-roles>
+        <authenticated>
+            <special-subject type="ALL_AUTHENTICATED_USERS" />  
+        </authenticated>
+    </oauth-roles>
+
 </server>
